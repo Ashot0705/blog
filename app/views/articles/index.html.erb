@@ -1,0 +1,16 @@
+<h1>Listig all posts</h1>
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Body</th>
+	</tr>
+
+	<% @articles.each do |article| %>
+	<tr>
+		<td><%= article.title %></td>
+		<td><%= article.body %></td>
+		<td><%= link_to 'show', article_path(article) %></td>
+
+	</tr>
+	<% end %>
+</table>
