@@ -24,21 +24,28 @@ class ArticlesController < ApplicationController
 		else 
 			render "new"
 		end
+	end
 
-		def update
-			@article = Article.find(params[:id])
-			if @article.update(article_params)
-				redirect_to @article
-			else
-				render "edit"
+	def update
+		@article = Article.find(params[:id])
+
+		if @article.update(article_params)
+			redirect_to @article
+		else
+			render "edit"
 		end
-	end
+	end	
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+ 
+    redirect_to articles_path
+  end
 
-	private
+		private
 
-	def article_params
-		params.require(:article).permit(:title, :body)
-	end
-
+		def article_params
+			params.require(:article).permit(:title, :body)
+		end
 end
