@@ -1,3 +1,4 @@
+<div class="info">
 <p>
 	<strong>Title:</strong>
 	<%= @article.title %>
@@ -9,24 +10,17 @@
 </p>
 
 <h2>Comments</h2>
-<%= render @article.comments %>
+<ul>
+<% @article.comments.each do |comment| %>
+	<li><h4>Commenter: <%= comment.commenter %></h2></li>
+	<li><h5>Text: <%= comment.body %></h3></li>
+	<br>
+<% end %>
+</ul>
 
 <h2>Add a comment:</h2>
-<%= form_for([@article, @article.comments.build]) do |f| %>
-
-<p>
-	<%= f.label :commenter %>
-	<%= f.text_field :commenter %>
-</p>
-
-<p>
-	<%= f.label :body %>
-	<%= f.text_area :body %>
-</p>
-
-<%= f.submit %>
-
-<% end %>
+<%= render "comments/form" %>
 
 <%= link_to "Back", articles_path %>
 <%= link_to "Edit", edit_article_path %>
+</div>
